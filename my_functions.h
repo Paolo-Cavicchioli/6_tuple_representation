@@ -1,6 +1,7 @@
 #ifndef MY_FUNCTIONS
 #define MY_FUNCTIONS
 #include<stdio.h>
+#include<cstdio>
 #include<stdlib.h>
 
 #define MAX 100

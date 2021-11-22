@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<cstdio>
 #include"my_functions.h"
 
 using namespace std; 
@@ -15,7 +16,7 @@ int main()
     int temp_1, temp_2, start, ending, X, Y, L, positive, negative;
 	int sup_t, len_t[2], base_t[2], sign_t[2], from_t, tow_t, word_0t[4], word_1t[4], sup_wt[2];  
 
-	int DEBUG = 0; 
+	int DEBUG = 1; 
 	
     printf("Input the 6-tuple like so: h_0 h_1 h_2 q_0 q_1 q_2 (values less than %d) \n", MAX/2); 
     scanf("%d %d %d %d %d %d", &tuple[1], &tuple[2], &tuple[3], &tuple[4], &tuple[5], &tuple[6]); 
@@ -114,9 +115,9 @@ int main()
 	
 	if(DEBUG == 1)
 	{
-		printf("Ho finito di riempire il caso\n"); 
+		printf("\n\nHo finito di riempire il caso\n"); 
 		debug_stampa(CC, max_len); 
-		printf("Ora seguo i colori\n"); 
+		printf("Ora seguo i colori\n\n"); 
 	}
 
     //color and follow lead --> per andare sotto-sopra basta che faccio +2 mod 4 nel i di CC[i][j]
@@ -148,6 +149,13 @@ int main()
             segui(CC, temp_cont, start, max_len[3], our_word, DEBUG);
             break; 
     }
+    
+    if(DEBUG == 1)
+	{
+		printf("\n\nHo finito di seguire i tre cicli colorati\n"); 
+		debug_stampa(CC, max_len); 
+		printf("Ora stampo tutto\n\n"); 
+	}
     
 	//stampo la word in numeri per essere sicuro che salti fuori la parola corretta: 
 	if(DEBUG == 1)

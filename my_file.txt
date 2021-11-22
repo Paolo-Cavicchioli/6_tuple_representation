@@ -1,0 +1,3 @@
+\( a_l^{-1} b_l^{-1} a_r^{-1} a_l b_l a_r a_l a_l b_l a_l b_l a_r a_l b_l b_r^{-1} a_r^{-1} b_r; \)
+\( a_l^{-1} b_l^{-1} a_r a_r b_r b_r a_l^{-1} b_l^{-1} a_r^{-1} a_l b_l a_r a_l b_l b_r^{-1} a_r^{-1} b_r; \)
+\( a_l^{-1} b_l^{-1} a_r a_r a_r b_r b_r a_l^{-1} b_l^{-1} a_r^{-1} a_l^{-1} b_l^{-1} a_l^{-1} a_r^{-1}; \)

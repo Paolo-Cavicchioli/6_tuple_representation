@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<cstdio>
 #include"my_functions.h"
 
 using namespace std;
@@ -83,7 +84,7 @@ void case_1(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     tow_t = 2; 
     word_0t[0] = as_m; 
     word_1t[0] = ad_p; 
-    sup_wt[0] = 1; 
+    sup_wt[0] = 1;
     sup_wt[1] = 1; 
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
@@ -144,7 +145,7 @@ void case_1(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     len_t[0] = len[1]; 
 	len_t[1] = len[2]; 
     base_t[0] = tuple[1] + tuple[3] - tuple[6]; 
-    base_t[1] = tuple[4]; 
+    base_t[1] = tuple[5]; 
     sign_t[0] = +1; 
     sign_t[1] = +1; 
     from_t = 1; 
@@ -229,15 +230,15 @@ void case_3(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
     
-    //d da 0 a 2 --> il 2° sotto
+    //c da 0 a 2 --> il 2° sotto
     
-    sup_t = D; 
+    sup_t = C; 
     len_t[0] = len[0]; 
 	len_t[1] = len[2]; 
-    base_t[0] = tuple[4] + tuple[1] + tuple[3] - tuple[6] + tuple[2]; 
-    base_t[1] = tuple[1]; 
-    sign_t[0] = +1; 
-    sign_t[1] = +1; 
+    base_t[0] = tuple[4] - 1; 
+    base_t[1] = tuple[1] + C - 1; 
+    sign_t[0] = -1; 
+    sign_t[1] = -1; 
     from_t = 0; 
     tow_t = 2; 
     word_0t[0] = bd_p; 
@@ -251,13 +252,13 @@ void case_3(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
     
-    //c da 0 a 2
+    //d da 0 a 2
     
-    sup_t = C; 
+    sup_t = D; 
     len_t[0] = len[0]; 
 	len_t[1] = len[2]; 
     base_t[0] = tuple[4] + tuple[1]; 
-    base_t[1] = tuple[1] + tuple[6]; 
+    base_t[1] = tuple[1] + C + B; 
     sign_t[0] = +1; 
     sign_t[1] = +1; 
     from_t = 0; 
@@ -274,7 +275,7 @@ void case_3(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     sup_t = B; 
     len_t[0] = len[0]; 
 	len_t[1] = len[3]; 
-    base_t[0] = tuple[4] + A + C; 
+    base_t[0] = tuple[4] + A + D; 
     base_t[1] = 0; 
     sign_t[0] = +1; 
     sign_t[1] = +1; 
@@ -292,8 +293,8 @@ void case_3(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     sup_t = B; 
     len_t[0] = len[1]; 
 	len_t[1] = len[2]; 
-    base_t[0] = tuple[4]; 
-    base_t[1] = tuple[1] + tuple[6] - tuple[2]; 
+    base_t[0] = tuple[5]; 
+    base_t[1] = tuple[1] + C; 
     sign_t[0] = +1; 
     sign_t[1] = +1; 
     from_t = 1; 
@@ -748,7 +749,7 @@ void antiorario(vertex CC[][MAX], int X, int Y, int L, int len_start, int start,
 
 void segui(vertex CC[][MAX], int *cont, int starting_point, int len, int word[][MAX], int DEBUG)
 {
-	int t_vert, t_C, t_0, t_1; 
+	int t_vert, t_C, t_0, t_1, full, t_vert_temp; 
 	for(int i = 0; i<3; ++i)
     {	
         if(DEBUG == 1)
@@ -760,13 +761,47 @@ void segui(vertex CC[][MAX], int *cont, int starting_point, int len, int word[][
         else
         {
         	t_vert = (t_vert - 1 + len) % len; 
-            //se è 2 dobbiamo controllare che il colore dove siamo sopra sia diverso da 0 e 1 
+            //se è 2 dobbiamo controllare che il colore dove siamo sopra sia diverso da 0 e 1 e che ci sia almeno un buco 
 			//--> non negativo, dato che è inizializzato a -1 
 			//--> basta controllare che non sia visitato
-            while(CC[t_C][t_vert].visited)
+			
+			//prima controlliamo che ci siano buchi
+			full = 0; 
+			t_vert_temp = t_vert; 
+			for(int k = 0; k<len; ++k)
+			{
+				if(CC[t_C][t_vert_temp].visited == 0)
+					full = 1; 
+				t_vert_temp = (t_vert_temp - 1 + len) % len;  
+			}
+			
+			if(DEBUG == 1)
+			{
+				printf("\nAbbiamo full = %d\n", full); 
+			}
+			
+			//non è full, stiamo dove siamo
+            if(full == 1)
             {
-                t_vert = (t_vert - 1 + len) % len;  
+				while(CC[t_C][t_vert].visited)
+				{
+					t_vert = (t_vert - 1 + len) % len;  
+				}
             }
+            
+            //è full il 3, scaliamo nel 2 e partiamo da 0
+            if(full == 0)
+            {
+				if(DEBUG == 1)
+					printf("\nora passo in 2 e vediamo\n"); 
+				t_C = 2; 
+				t_vert = 0; 
+				while(CC[t_C][t_vert].visited)
+				{
+					t_vert = t_vert + 1;  
+				}
+			}
+            
         }
         while(!CC[t_C][t_vert].visited)
         {
@@ -820,90 +855,187 @@ void segui(vertex CC[][MAX], int *cont, int starting_point, int len, int word[][
 
 void stampa(int word[][MAX], int *cont)
 {
+	FILE * f_ou; 
+	f_ou = fopen("my_file.txt", "w"); 
 	int ii; 
     for(int i = 0; i<3; ++i) 
     {
     	ii = 0; 
         printf("\nThe %d-word is: ", i); 
-        while (ii<cont[i])
+        fprintf(f_ou, "\\("); 
+        while(ii<cont[i])
         {
-            if(ii!=cont[i] - 1) //se non sono in fondo
-                if(word[i][ii+1] == bs_sp)
+			//caso speciale: se inizio con un carattere speciale devo 
+			//controllare che l'ultimo non sia la sua "nemesi"
+			if(ii == 0)
+				if(word[i][cont[i] - 1] == bs_sp)
                 {
                     if(word[i][ii] == bs_p)
-                        word[i][ii+1] = 0; 
+                        word[i][cont[i] - 1] = 0; 
                     else if(word[i][ii] == bs_m)
+                         {
+                             word[i][ii] = 0; 
+                             word[i][cont[i] - 1] = 0; 
+                         }
+                }
+                else if(word[i][cont[i] - 1] == bs_sm) 
+                     {
+                        if(word[i][ii] == bs_m)
+                            word[i][cont[i] - 1] = 0; 
+                        else if(word[i][ii] == bs_p)
+                             {
+                                 word[i][ii] = 0; 
+                                 word[i][cont[i] - 1] = 0; 
+                             }
+                     }
+                     else if(word[i][cont[i] - 1] == bd_sp) //non faccio il bd_sm perché è solo "verso prima"
+                          {
+                              if(word[i][ii] == bd_p)
+                                  word[i][cont[i] - 1] = 0; 
+                              else if(word[i][ii] == bd_m)
+                                   {
+                                       word[i][ii] = 0; 
+                                       word[i][cont[i] - 1] = 0; 
+                                   }
+                          }  
+					      else if(word[i][ii] == bs_sp)
+							   {
+								   if(word[i][cont[i] - 1] == bs_p)
+									   word[i][ii] = 0; 
+								   else if(word[i][cont[i] - 1] == bs_m)
+								        {
+											word[i][ii] = 0; 
+											word[i][cont[i] - 1] = 0; 
+										}
+							   }
+							   else if(word[i][ii] == bs_sm) 
+									{
+										if(word[i][cont[i] - 1] == bs_m)
+											word[i][ii] = 0; 
+										else if(word[i][cont[i] - 1] == bs_p)
+											 {
+											 	 word[i][ii] = 0; 
+												 word[i][cont[i] - 1] = 0; 
+											 }
+									}
+									else if(word[i][ii] == bd_sm) //non faccio il bd_sp perché è "solo dopo"
+										 {
+											 if(word[i][cont[i] - 1] == bd_m)
+											 	 word[i][ii] = 0; 
+											 else if(word[i][cont[i] - 1] == bd_p)
+												  {
+													  word[i][ii] = 0; 
+													  word[i][cont[i] - 1] = 0; 
+												  }
+										 } 
+            else if(ii!=cont[i] - 1) //se non sono in fondo o all'inizio devo controllare che quello prima e quello dopo non siano la nemesi
+            //ora controllo tutti i possibili casi speciali che posso avere
+                if(word[i][ii] == bs_sp)
+                {
+                    if(word[i][ii+1] == bs_p)
+                        word[i][ii] = 0; 
+                    else if(word[i][ii+1] == bs_m)
                         {
                             word[i][ii] = 0; 
                             word[i][ii+1] = 0; 
                         }
                 }
-                else if(word[i][ii] == bd_sp) 
+                else if(word[i][ii] == bs_sp) 
                     {
-                        if(word[i][ii+1] == bd_p)
+                        if(word[i][ii-1] == bs_p)
                             word[i][ii] = 0; 
-                        else if(word[i][ii+1] == bd_m)
+                        else if(word[i][ii-1] == bs_m)
                             {
                                 word[i][ii] = 0; 
-                                word[i][ii+1] = 0; 
+                                word[i][ii-1] = 0; 
                             }
                     }
-                    else if(word[i][ii+1] == bs_sm)
+                    else if(word[i][ii] == bs_sm)
                         {
-                            if(word[i][ii] == bs_m)
-                                word[i][ii+1] = 0; 
-                            else if(word[i][ii] == bs_p)
+                            if(word[i][ii+1] == bs_m)
+                                word[i][ii] = 0; 
+                            else if(word[i][ii+1] == bs_p)
                                 {
                                     word[i][ii] = 0; 
                                     word[i][ii+1] = 0; 
                                 }
                         }  
-                        else if(word[i][ii] == bd_sm)
+                        else if(word[i][ii] == bs_sm)
                             {
-                                if(word[i][ii+1] == bd_m)
+                                if(word[i][ii-1] == bs_m)
                                     word[i][ii] = 0; 
-                                else if(word[i][ii+1] == bd_p)
+                                else if(word[i][ii-1] == bs_p)
                                     {
                                         word[i][ii] = 0; 
-                                        word[i][ii+1] = 0; 
+                                        word[i][ii-1] = 0; 
                                     }
                             }
-                            else if(word[i][ii+1] + word[i][ii] == 0) //è sempre cosÃ¬? 
-                                {
-                                    word[i][ii] = 0; 
-                                    word[i][ii+1] = 0; 
-                                }
+							else if(word[i][ii] == bd_sp)
+								 {
+								 	 if(word[i][ii+1] == bd_p)
+										 word[i][ii] = 0; 
+									 else if(word[i][ii+1] == bd_m)
+									      {
+											  word[i][ii] = 0; 
+											  word[i][ii+1] = 0; 
+										  }
+								 }  
+  								 else if(word[i][ii] == bd_sm)
+									  {
+										  if(word[i][ii-1] == bd_m)
+											  word[i][ii] = 0; 
+										  else if(word[i][ii-1] == bd_p)
+											   {
+												   word[i][ii] = 0; 
+												   word[i][ii-1] = 0; 
+											   }
+									  }
+                            //e ora il caso "anti" classico
+                            else if(word[i][ii+1] + word[i][ii] == 0)
+                                 {
+                                     word[i][ii] = 0; 
+                                     word[i][ii+1] = 0; 
+                                 }
             switch (word[i][ii])
             {
                 case 0: 
                     break; 
                 case as_p:
-                    printf(" a_l^+ "); 
+                    printf(" a_l"); 
+                    fprintf(f_ou, " a_l"); 
                     break; 
                 case as_m: 
-                    printf(" a_l^- "); 
+                    printf(" a_l^{-1}"); 
+                    fprintf(f_ou, " a_l^{-1}"); 
                     break; 
                 case bs_p: 
-                    printf(" b_l^+ "); 
+                    printf(" b_l"); 
+                    fprintf(f_ou, " b_l"); 
                     break; 
                 case bs_m: 
-                    printf(" b_l^- "); 
+                    printf(" b_l^{-1}"); 
+                    fprintf(f_ou, " b_l^{-1}"); 
                     break; 
                 case ad_p: 
-                    printf(" a_r^+ "); 
+                    printf(" a_r"); 
+                    fprintf(f_ou, " a_r"); 
                     break; 
                 case ad_m: 
-                    printf(" a_r^- "); 
+                    printf(" a_r^{-1}"); 
+                    fprintf(f_ou, " a_r^{-1}"); 
                     break; 
                 case bd_p: 
-                    printf(" b_r^+ "); 
+                    printf(" b_r");
+                    fprintf(f_ou, " b_r"); 
                     break; 
                 case bd_m: 
-                    printf(" b_r^- "); 
+                    printf(" b_r^{-1}"); 
+                    fprintf(f_ou, " b_r^{-1}"); 
                     break;
             }
             ii++; 
         }
+        fprintf(f_ou, "; \\)\n");
         printf("\n"); 
     }
 }
