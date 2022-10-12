@@ -7,11 +7,11 @@ using namespace std;
 
 int main()
 {
-    int tuple[7]; 				//the 6-tuple, one more to be more "easy to read"
-    int A, B, C, D;  			//the n� of arcs
+    int tuple[7]; 			//the 6-tuple, one more to be more "easy to read"
+    int A, B, C, D;  			//the number of arcs
     int our_case; 
     int max_len[4]; 			//how many vertices we have in the C_i^+-
-    struct vertex CC[4][MAX]; 	//the first index identifies the C_i^+- : like in a matrix
+    struct vertex CC[4][MAX]; 		//the first index identifies the C_i^+- : like in a matrix
     int our_word[3][MAX]; 		//the representation using B_{2,2n}
     int temp_1, temp_2, start, ending, X, Y, L, positive, negative;
 	int sup_t, len_t[2], base_t[2], sign_t[2], from_t, tow_t, word_0t[4], word_1t[4], sup_wt[2];  
@@ -23,11 +23,11 @@ int main()
 	if(DEBUG == 1)
 		printf("Got these values: %d %d %d %d %d %d \n", tuple[1], tuple[2], tuple[3], tuple[4], tuple[5], tuple[6]); 
     
-	//check that 6-tuple is ok - 
-    //////PER ORA SOLO TUPLE ORDINATE -- SISTEMARE FACENDO LE OPERAZIONI PER ORDINARE TUTTO
+    //check that 6-tuple is ok - 
+    //////Just for now, only ordered tuples -- SISTEMARE
     //if((tuple[1] - tuple[2] % 2 == 0) && (tuple[1] - tuple[3] % 2 == 0) && (tuple[4] - tuple[5] % 2 == 0)  && (tuple[4] - tuple[6] % 2 == 0) && (tuple[1] - tuple[4] % 2 == 1))
     //{
-    //    printf("6-tuple non valida"); 
+    //    printf("Invalid 6-tuple"); 
     //    return 1; 
     //}
 
@@ -46,12 +46,12 @@ int main()
             our_case = 4; 
     
 	if(DEBUG == 1)
-		printf("Il nostro caso e' %d \n", our_case); 
+		printf("Our case is %d \n", our_case); 
     
 	switch(our_case)
     {
         case 1: 
-            // inizializzo A,B,C,D
+            //Initialize A,B,C,D
             A = tuple[1];
             B = tuple[6]; 
             C = tuple[3] - tuple[6]; 
@@ -60,7 +60,7 @@ int main()
             if(DEBUG == 1)
 				printf("A = %d, B = %d, C = %d, D = %d \n", A, B, C, D); 
             
-            //lunghezza massima nei cicli sui C_i^+-  
+            //Max length of cicles on C_i^+-  
             max_len[0]=tuple[1] + tuple[2]; 
             max_len[1]=tuple[1] + tuple[3];
             max_len[2]=max_len[0];
@@ -74,7 +74,7 @@ int main()
             return 1; 
             break;
         case 3: 
-            // inizializzo A,B,C,D
+            //Initialize A,B,C,D
             A = tuple[1];
             B = tuple[2]; 
             C = tuple[3] - tuple[6]; 
@@ -83,7 +83,7 @@ int main()
             if(DEBUG == 1)
 				printf("A = %d, B = %d, C = %d, D = %d \n", A, B, C, D); 
 
-            //lunghezza massima nei cicli sui C_i^+-  
+            //Max length of cicles on C_i^+-  
             max_len[1]=tuple[1] + tuple[2]; 
             max_len[0]=tuple[1] + tuple[3];
             max_len[2]=max_len[0];
@@ -93,13 +93,13 @@ int main()
 			
             break; 
         case 4: 
-            // inizializzo A,B,C,D
+            //Initialize A,B,C,D
             A = tuple[1];
             B = tuple[2] + tuple[3] - tuple[6]; 
             C = tuple[6] - tuple[2]; 
             D = tuple[6] - tuple[3];
             
-            //lunghezza massima nei cicli sui C_i^+-  
+            //Max length of cicles on C_i^+-  
             max_len[0]=tuple[1] + tuple[2]; 
             max_len[1]=tuple[1] + tuple[3];
             max_len[2]=max_len[0];
@@ -115,18 +115,17 @@ int main()
 	
 	if(DEBUG == 1)
 	{
-		printf("\n\nHo finito di riempire il caso\n"); 
+		printf("\n\nFinished filling the cases\n"); 
 		debug_stampa(CC, max_len); 
-		printf("Ora seguo i colori\n\n"); 
+		printf("Now we follow the colors\n\n"); 
 	}
 
-    //color and follow lead --> per andare sotto-sopra basta che faccio +2 mod 4 nel i di CC[i][j]
+    //color and follow lead --> to go up or down the graph the it is enough to add +2 mod 4 in the i value of CC[i][j]
     //in the meantime we write the word
-    //partiamo sempre dal 3
-    //vediamo se accontentarci di due o farne 3 --> il terzo sarebbe da controllare ... potrebbe essere che sia di nuovo dello stesso colore
+    //we always start from the third 
     int temp_C, temp_vert, temp_cont[3], t_0, t_1; 
     if(DEBUG == 1)
-		printf("Ho visitato: "); 
+		printf("Visited: "); 
 	switch(our_case)
     {
         case 1: 
@@ -152,32 +151,32 @@ int main()
     
     if(DEBUG == 1)
 	{
-		printf("\n\nHo finito di seguire i tre cicli colorati\n"); 
+		printf("\n\nFinished following the colors, I found 3 bicolored cicles\n"); 
 		debug_stampa(CC, max_len); 
-		printf("Ora stampo tutto\n\n"); 
+		printf("Now I print all of it\n\n"); 
 	}
     
-	//stampo la word in numeri per essere sicuro che salti fuori la parola corretta: 
+	//print the words in numbers to be sure of obtaining the correct word 
 	if(DEBUG == 1)
 	{
 		for(int i = 0; i<3; ++i)
 		{
-			printf("\n La %d parola e' (prima del lavoro): '", i); 
+			printf("\n The %d word is (before translating): '", i); 
 			for(int j = 0; j<temp_cont[i]; ++j)
 				printf(" %d ", our_word[i][j]); 
 		}	
 		printf("\n\n"); 
 	}
 	
-	//FARE IL CONTROLLO DELLA SESTUPLA: SONO AVANZATI ARCHI NON COLORATI? HA USATO TUTTI E TRE I COLORI? 
-	//SE NO DIRE CHE NON � UN MANIFOLD E CHIUDERE MAGARI CON UN ERRORE
-	if(controllo(CC, max_len)) //0 � falso, 1 � vero
+	//Check the 6-tuple: do I have extra arcs? Did I use all 3 colors?  
+	//If not, it is not a manifold, close with error
+	if(controllo(CC, max_len)) //0 is FALSE, 1 is TRUE
 	{
 		printf("The 6-tuple doesn't correspond to a manifold, closing with error. \n"); 
 		return 1; 
 	}
 	
-    //ora leggo la word e sistemo i punti dove ci sono lettere contrarie successive
+    //Now I read the word and simplify consecutive opposite elements
     stampa(our_word, temp_cont); 
 	
     return 0; 
