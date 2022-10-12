@@ -17,7 +17,7 @@ void initialize_CC(vertex CC[][MAX])
         CC[1][i].to[1] = -1; 
         CC[2][i].to[1] = -1; 
         CC[3][i].to[1] = -1;
-        CC[0][i].word[0] = 0; //ricorda: 0 ï¿½ falso
+        CC[0][i].word[0] = 0; //remember: 0 is FALSE
         CC[1][i].word[0] = 0; 
         CC[2][i].word[0] = 0; 
         CC[3][i].word[0] = 0;
@@ -41,7 +41,7 @@ void initialize_CC(vertex CC[][MAX])
         CC[1][i].b_i = 0; 
         CC[2][i].b_i = 0; 
         CC[3][i].b_i = 0;
-        CC[0][i].visited = 0; //ricorda che 0 ï¿½ falso
+        CC[0][i].visited = 0; //remember 0 is FALSE
         CC[1][i].visited = 0; 
         CC[2][i].visited = 0; 
         CC[3][i].visited = 0; 
@@ -54,8 +54,8 @@ void case_1(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
 	int base_t[2], len_t[2], sign_t[2], sup_wt[2], word_0t[4], word_1t[4]; 
 	int start, ending, X, Y, L, positive, negative; 
 	
-	//e ora metto i vari "to"
-    //a sopra da 1 a 0
+    //and now I put the "to" part
+    //a top from 1 a 0
     sup_t = A; 
     len_t[0] = len[1]; 
 	len_t[1] = len[0]; 
@@ -72,7 +72,7 @@ void case_1(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
     
-    //a sotto da 3 a 2
+    //a bottom from 3 to 2
     sup_t = A; 
     len_t[0] = len[3]; 
 	len_t[1] = len[2]; 
@@ -89,7 +89,7 @@ void case_1(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
 
-    //d da 0 a 2
+    //d from 0 to 2
     sup_t = D; 
     len_t[0] = len[0]; 
 	len_t[1] = len[2]; 
@@ -106,7 +106,7 @@ void case_1(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
     
-    //c da 1 a 3
+    //c from 1 to 3
     sup_t = C; 
     len_t[0] = len[1]; 
 	len_t[1] = len[3]; 
@@ -123,7 +123,7 @@ void case_1(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
     
-    //b in mezzo da 0 a 3
+    //b in the middle from 0 to 3
     sup_t = B; 
     len_t[0] = len[0]; 
 	len_t[1] = len[3]; 
@@ -140,7 +140,7 @@ void case_1(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
     
-    //b fuori da 1 a 2
+    //b outside from 1 to 2
     sup_t = B; 
     len_t[0] = len[1]; 
 	len_t[1] = len[2]; 
@@ -163,8 +163,8 @@ void case_1(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
     
-    //dichiaro i b_i a sinistra 
-	//ANTIORARIO
+    //declare b_i on the left 
+	//COUNTERCLOCKWISE
 	start = 0; 
 	ending = 2; 
 	X = (tuple[5] + B) % len[ending];
@@ -174,8 +174,8 @@ void case_1(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
 	negative = bs_m; 
 	antiorario(CC, X, Y, L, len[ending], start, ending, positive, negative); 
 
-    //dichiaro i b_i a destra 
-	//ANTIORARIO
+    //declare b_i on the right 
+	//COUNTERCLOCKWISE
 	start = 1; 
 	ending = 3; 
     X = 0;
@@ -193,8 +193,8 @@ void case_3(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
 	int base_t[2], len_t[2], sign_t[2], sup_wt[2], word_0t[4], word_1t[4]; 
 	int start, ending, X, Y, L, positive, negative; 
 	
-	//e ora metto i vari "to"
-    //a sopra da 1 a 0
+	//and now I put the "to" part
+    //a top from 1 to 0
     
     sup_t = A; 
     len_t[0] = len[1]; 
@@ -212,7 +212,7 @@ void case_3(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
     
-    //a sotto da 3 a 2
+    //a bottom from 3 to 2
     
     sup_t = A; 
     len_t[0] = len[3]; 
@@ -230,7 +230,7 @@ void case_3(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
     
-    //c da 0 a 2 --> il 2° sotto
+    //c from 0 to 2 --> the second bottom
     
     sup_t = C; 
     len_t[0] = len[0]; 
@@ -252,7 +252,7 @@ void case_3(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
     
-    //d da 0 a 2
+    //d from 0 to 2
     
     sup_t = D; 
     len_t[0] = len[0]; 
@@ -270,7 +270,7 @@ void case_3(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
     
-    //b in mezzo da 0 a 3
+    //b in the middle from 0 to 3
     
     sup_t = B; 
     len_t[0] = len[0]; 
@@ -288,7 +288,7 @@ void case_3(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
     
-    //b fuori da 1 a 2
+    //b outside from 1 to 2
     
     sup_t = B; 
     len_t[0] = len[1]; 
@@ -312,8 +312,8 @@ void case_3(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
     
-    //dichiaro i b_i a sinistra 
-	//ANTIORARIO
+    //declare b_i on the left 
+	//COUNTERCLOCKWISE
 	start = 0; 
 	ending = 2; 
 	X = (tuple[1] + tuple[6]) % len[ending];
@@ -323,8 +323,8 @@ void case_3(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
 	negative = bs_m; 
 	antiorario(CC, X, Y, L, len[start], start, ending, positive, negative); 
     
-    //dichiaro i b_i a destra 
-	//ANTIORARIO
+    //declare b_i on the right 
+	//COUNTERCLOCKWISE
     start = 1; 
 	ending = 3; 
     X = (tuple[5] + tuple[2]) % len[start];
@@ -341,8 +341,8 @@ void case_4(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
 	int base_t[2], len_t[2], sign_t[2], sup_wt[2], word_0t[4], word_1t[4]; 
 	int start, ending, X, Y, L, positive, negative; 
 	
-    //e ora metto i vari "to"
-    //a sopra da 1 a 0
+    //now I fill the "to" part
+    //a top from 1 to 0
     
     sup_t = A; 
     len_t[0] = len[1]; 
@@ -360,7 +360,7 @@ void case_4(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt); 
     
-    //a sotto da 3 a 2
+    //a bottom from 3 to 2
     
     sup_t = A; 
     len_t[0] = len[3]; 
@@ -378,7 +378,7 @@ void case_4(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt);
     
-    //d da 0 a 2
+    //d from 0 to 2
     
     sup_t = D; 
     len_t[0] = len[0]; 
@@ -396,7 +396,7 @@ void case_4(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt);
     
-    //c da 1 a 3
+    //c from 1 to 3
     
     sup_t = C; 
     len_t[0] = len[1]; 
@@ -414,7 +414,7 @@ void case_4(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt);
     
-    //b in mezzo da 0 a 3
+    //b in the middle from 0 to 3
     
     sup_t = B; 
     len_t[0] = len[0]; 
@@ -432,7 +432,7 @@ void case_4(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt);
     
-    //b fuori da 1 a 2
+    //b outside from 1 to 2
     
     sup_t = B; 
     len_t[0] = len[1]; 
@@ -456,8 +456,8 @@ void case_4(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
     
     riempi(CC, sup_t, len_t, base_t, sign_t, from_t, tow_t, word_0t, word_1t, sup_wt);
     
-    //dichiaro i b_i a sinistra 
-	//ORARIO
+    //declare b_i on the left 
+	//CLOCKWISE
 	start = 0; 
 	ending = 2; 
     X = (tuple[5] + D + B) % len[ending];
@@ -467,8 +467,8 @@ void case_4(vertex CC[][MAX], int A, int B, int C, int D, int *len, int *tuple)
 	negative = bs_m; 
 	orario(CC, X, Y, L, len[start], start, ending, positive, negative); 
     
-    //dichiaro i b_i a destra
-	//ORARIO
+    //declare b_i on the right
+	//CLOCKWISE
 	start = 1; 
 	ending = 3; 
 	X = (A + B) % len[start];
@@ -489,13 +489,13 @@ void riempi(vertex CC[][MAX], int sup, int* len, int* base, int* sign, int from,
                 t[0] = (base[0] + sign[0]*j + len[0]) % len[0]; 
                 t[1] = (base[1] + sign[1]*j + len[1]) % len[1]; 
                 
-				//parto da uno
+				//start from the first
                 CC[from][t[0]].to[0] = towards; 
                 CC[from][t[0]].to[1] = t[1]; 
                 for(k = 0; k<sup_w[0]; ++k)
 					CC[from][t[0]].word[k] = parola_0[k]; 
                 
-				//aggiorno anche l'altro
+				//update also the other
                 CC[towards][t[1]].to[0] = from;
                 CC[towards][t[1]].to[1] = t[0]; 
                 for(k = 0; k<sup_w[1]; ++k)
@@ -505,7 +505,7 @@ void riempi(vertex CC[][MAX], int sup, int* len, int* base, int* sign, int from,
 
 void orario(vertex CC[][MAX], int X, int Y, int L, int len_start, int start, int ending, int positive, int negative)
 {
-	if((X < Y) && (L > X && L < Y)) //crossa caso 1
+	if((X < Y) && (L > X && L < Y)) //cross case 1
             {
                 for(int j = 0; j<len_start; ++j)
                 {
@@ -521,7 +521,7 @@ void orario(vertex CC[][MAX], int X, int Y, int L, int len_start, int start, int
                     }
                 }
             }
-            else if((Y < X) && (L > X || L < Y)) //crossa caso 2
+            else if((Y < X) && (L > X || L < Y)) //cross case 2
             {
             	if(L > X)
             	{
@@ -557,7 +557,7 @@ void orario(vertex CC[][MAX], int X, int Y, int L, int len_start, int start, int
                 	}
 				}
 			}
-            else if(X < Y) //non crossa caso 1
+            else if(X < Y) //does not cross case 1
             {
             	if(L > Y)
             	{
@@ -602,7 +602,7 @@ void orario(vertex CC[][MAX], int X, int Y, int L, int len_start, int start, int
 					}
 				}
             }
-            else if(Y < X) //non crossa caso 2
+            else if(Y < X) //does not cross case 2
             {
             	for(int j = 0; j<len_start; ++j)
             	{
@@ -627,7 +627,7 @@ void orario(vertex CC[][MAX], int X, int Y, int L, int len_start, int start, int
 
 void antiorario(vertex CC[][MAX], int X, int Y, int L, int len_start, int start, int ending, int positive, int negative)
 {
-	if((X < Y) && (L > X && L < Y)) //crossa caso 1
+	if((X < Y) && (L > X && L < Y)) //cross case 1
             {
                 for(int j = 0; j<len_start; ++j)
                 {
@@ -643,7 +643,7 @@ void antiorario(vertex CC[][MAX], int X, int Y, int L, int len_start, int start,
                     }
                 }
             }
-            else if((Y < X) && (L > X || L < Y)) //crossa caso 2
+            else if((Y < X) && (L > X || L < Y)) //cross case 2
             {
             	if(L < Y)
             	{
@@ -679,7 +679,7 @@ void antiorario(vertex CC[][MAX], int X, int Y, int L, int len_start, int start,
                 	}
 				}
 			}
-            else if(X < Y) //non crossa caso 1
+            else if(X < Y) //does not cross case 1
             {
             	if(L < X)
             	{
@@ -724,7 +724,7 @@ void antiorario(vertex CC[][MAX], int X, int Y, int L, int len_start, int start,
 					}
 				}
             }
-            else if(Y < X) //non crossa caso 2
+            else if(Y < X) //does not cross case 2
             {
             	for(int j = 0; j<len_start; ++j)
             	{
@@ -754,18 +754,18 @@ void segui(vertex CC[][MAX], int *cont, int starting_point, int len, int word[][
     {	
         if(DEBUG == 1)
 			printf("\n-----------     %d     ----------------- \n", i); 
-        cont[i] = 0; //quello della parola grande
+        cont[i] = 0; //the one of the big word
         t_C = 3; 
         if(i != 2)
             t_vert = (starting_point - i + len) % len; 
         else
         {
         	t_vert = (t_vert - 1 + len) % len; 
-            //se è 2 dobbiamo controllare che il colore dove siamo sopra sia diverso da 0 e 1 e che ci sia almeno un buco 
-			//--> non negativo, dato che è inizializzato a -1 
-			//--> basta controllare che non sia visitato
+            //if it is 2, we need to check that the color where we are now is different from 0 and 1, and that there is at least one hole 
+			//--> non negative, since it is initialized at -1 
+			//--> enough to check that it is not visited
 			
-			//prima controlliamo che ci siano buchi
+			//first check that there are no holes
 			full = 0; 
 			t_vert_temp = t_vert; 
 			for(int k = 0; k<len; ++k)
@@ -777,10 +777,10 @@ void segui(vertex CC[][MAX], int *cont, int starting_point, int len, int word[][
 			
 			if(DEBUG == 1)
 			{
-				printf("\nAbbiamo full = %d\n", full); 
+				printf("\nIt is full = %d\n", full); 
 			}
 			
-			//non è full, stiamo dove siamo
+			//not full, we stay where we are
             if(full == 1)
             {
 				while(CC[t_C][t_vert].visited)
@@ -789,11 +789,11 @@ void segui(vertex CC[][MAX], int *cont, int starting_point, int len, int word[][
 				}
             }
             
-            //è full il 3, scaliamo nel 2 e partiamo da 0
+            //3 is full, shift to 2 and start from 0
             if(full == 0)
             {
 				if(DEBUG == 1)
-					printf("\nora passo in 2 e vediamo\n"); 
+					printf("\nNow I pass onto 2 and we see\n"); 
 				t_C = 2; 
 				t_vert = 0; 
 				while(CC[t_C][t_vert].visited)
@@ -808,10 +808,10 @@ void segui(vertex CC[][MAX], int *cont, int starting_point, int len, int word[][
            	if(DEBUG == 1)
 				printf("%d - %d   ", t_C, t_vert); 
 			
-			//metto visitato
+			//put visited
             CC[t_C][t_vert].visited = 1;
             
-            //aggiorno la parola
+            //update the word
             for(int j = 0; j<4; ++j)
             {
                 if(CC[t_C][t_vert].word[j])
@@ -823,21 +823,21 @@ void segui(vertex CC[][MAX], int *cont, int starting_point, int len, int word[][
                 }
             }
 
-            //metto il colore
+            //put the color
             CC[t_C][t_vert].colour = i; 
 
-            //percorro l'arco
+            //follow the arc
             t_0 = CC[t_C][t_vert].to[0]; 
             t_1 = CC[t_C][t_vert].to[1]; 
             if(DEBUG == 1)
 				printf("\n attachment in %d - %d ", t_0, t_1); 
 
 			                    
-            //aggiorno anche l'altro e metto il colore
+            //update also the other and put the right color
             CC[t_0][t_1].visited = 1; 
             CC[t_0][t_1].colour = i; 
 
-            //guardo di mettere il b_i
+            //check to add b_i
             if(CC[t_0][t_1].b_i)
             {
                 word[i][cont[i]] = CC[t_0][t_1].b_i; 
@@ -846,7 +846,7 @@ void segui(vertex CC[][MAX], int *cont, int starting_point, int len, int word[][
                 cont[i]++; 
             }
 
-            //il prossimo è quello sotto
+            //next is the bottom one
             t_C = (t_0 + 2) % 4; 
             t_vert = t_1; 
         }
@@ -865,8 +865,8 @@ void stampa(int word[][MAX], int *cont)
         fprintf(f_ou, "\\("); 
         while(ii<cont[i])
         {
-			//caso speciale: se inizio con un carattere speciale devo 
-			//controllare che l'ultimo non sia la sua "nemesi"
+			//special case: if I start with a special case 
+			//check that the last one is not its opposite
 			if(ii == 0)
 				if(word[i][cont[i] - 1] == bs_sp)
                 {
@@ -888,7 +888,7 @@ void stampa(int word[][MAX], int *cont)
                                  word[i][cont[i] - 1] = 0; 
                              }
                      }
-                     else if(word[i][cont[i] - 1] == bd_sp) //non faccio il bd_sm perché è solo "verso prima"
+                     else if(word[i][cont[i] - 1] == bd_sp) //don't do the bd_sm becouse is only "to the front"
                           {
                               if(word[i][ii] == bd_p)
                                   word[i][cont[i] - 1] = 0; 
@@ -918,7 +918,7 @@ void stampa(int word[][MAX], int *cont)
 												 word[i][cont[i] - 1] = 0; 
 											 }
 									}
-									else if(word[i][ii] == bd_sm) //non faccio il bd_sp perché è "solo dopo"
+									else if(word[i][ii] == bd_sm) //don't do the bd_sp becouse it is only "to the end"
 										 {
 											 if(word[i][cont[i] - 1] == bd_m)
 											 	 word[i][ii] = 0; 
@@ -928,8 +928,8 @@ void stampa(int word[][MAX], int *cont)
 													  word[i][cont[i] - 1] = 0; 
 												  }
 										 } 
-            else if(ii!=cont[i] - 1) //se non sono in fondo o all'inizio devo controllare che quello prima e quello dopo non siano la nemesi
-            //ora controllo tutti i possibili casi speciali che posso avere
+            else if(ii!=cont[i] - 1) //if I'm not in the end or beginning, I need to check that the previous or following one are not my opposite
+            //now I check all the possible special cases that I can have
                 if(word[i][ii] == bs_sp)
                 {
                     if(word[i][ii+1] == bs_p)
@@ -990,7 +990,7 @@ void stampa(int word[][MAX], int *cont)
 												   word[i][ii-1] = 0; 
 											   }
 									  }
-                            //e ora il caso "anti" classico
+                            //and now the classic "anti" case
                             else if(word[i][ii+1] + word[i][ii] == 0)
                                  {
                                      word[i][ii] = 0; 
@@ -1060,9 +1060,9 @@ int controllo(vertex CC[][MAX], int *len)
 		for(int j = 0; j<len[i]; ++j)
 		{
 			if(CC[i][j].colour == -1)
-				return 1; //vero, non è una 3-varietà
+				return 1; //true, it is not a 3-manifold
 		}
 	}
-	return 0; //falso, è una 3-varietà
+	return 0; //false, it is a 3-manifold
 }
 
